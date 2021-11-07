@@ -1,46 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { IncrementEditor } from "./IncrementEditor";
+import { useSelector } from 'react-redux'
 
-export class Counter extends Component {
-  static displayName = Counter.name;
+function Counter() {
+  const [count, setCount] = React.useState(0);
+  const increment = useSelector((state) => state.increment.value);
 
-  constructor(props) {
-    super(props);
-    this.state = { 
-      currentCount: 0,
-      currentIncrement: 1, 
-    };
-    this.incrementCounter = this.incrementCounter.bind(this);
-    this.onIncrementChange = this.onIncrementChange.bind(this);
-  }
+  return (
+    <div>
+      <h1>Counter</h1>
 
-  incrementCounter() {
-    this.setState((state) => ({
-      currentCount: state.currentCount + state.currentIncrement
-    }));
-  }
+      <p>This is a simple example of a React component.</p>
 
-  onIncrementChange(value) {
-    this.setState({ 
-      currentIncrement: value 
-    });
-  }
+      <p aria-live="polite">Current count: <strong>{count}</strong></p>
 
-  render() {
-    return (
-      <div>
-        <h1>Counter</h1>
-
-        <p>This is a simple example of a React component.</p>
-
-        <p aria-live="polite">Current count: <strong>{this.state.currentCount}</strong></p>
-
-        <button className="btn btn-primary" onClick={this.incrementCounter}>Increment by {this.state.currentIncrement}</button>
-          
-        <div className="mt-5">
-          <IncrementEditor onIncrementChange={this.onIncrementChange} />
-        </div>  
-      </div>
-    );
-  }
+      <button className="btn btn-primary" onClick={() => setCount(count + increment)}>Increment by {increment}</button>
+        
+      <div className="mt-5">
+        <IncrementEditor />
+      </div>  
+    </div>
+  );
 }
+
+export {Counter}
