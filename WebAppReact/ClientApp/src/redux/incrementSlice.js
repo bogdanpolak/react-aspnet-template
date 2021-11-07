@@ -6,10 +6,16 @@ export const incrementSlice = createSlice({
     value: 1,
   },
   reducers: {
+    incIncrement: (state) => {
+      state.value += 1
+    },
+    decIncrement: (state) => {
+      state.value -= 1
+    },
     setIncrement: (state, action) => {
       state.value = action.payload
     },
   },
 })
 
-export const { setIncrement } = incrementSlice.actions
+export const { setIncrement, incIncrement, decIncrement } = incrementSlice.actions

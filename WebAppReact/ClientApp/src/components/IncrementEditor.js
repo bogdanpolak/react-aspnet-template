@@ -1,8 +1,8 @@
 ﻿import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { setIncrement } from '../redux/incrementSlice'
+import { setIncrement, incIncrement, decIncrement } from '../redux/incrementSlice'
 
-function IncrementEditor() {
+export function IncrementEditor() {
   const increment = useSelector((state) => state.increment.value);
   const dispatch = useDispatch();
   
@@ -18,10 +18,8 @@ function IncrementEditor() {
 
       <input value={increment} className="input-lg" onChange={onEditIncrement}/>
 
-      <button className="btn btn-primary ml-1" onClick={() => dispatch(setIncrement(increment-1))}>-1</button>
-      <button className="btn btn-primary ml-1" onClick={() => dispatch(setIncrement(increment+1))}>+1</button>
+      <button className="btn btn-primary ml-1" onClick={() => dispatch(decIncrement())}>-1</button>
+      <button className="btn btn-primary ml-1" onClick={() => dispatch(incIncrement())}>+1</button>
     </div>
   );
 }
-
-export {IncrementEditor};
