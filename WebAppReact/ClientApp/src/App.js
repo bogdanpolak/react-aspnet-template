@@ -10,12 +10,12 @@ import './custom.css'
 export default class App extends Component {
   static displayName = App.name;
 
-  render () {
+  render() {
     return (
       <Layout>
-        <Route exact path='/' component={Home} />
-        <Route path='/counter' component={Counter} />
-        <Route path='/fetch-data' component={FetchData} />
+        <Route exact path='/'> <Home /> </Route>
+        <Route path='/counter'> <Counter initialValue="100" /> </Route>
+        <Route path='/fetch-data'> <FetchData /> </Route>
       </Layout>
     );
   }

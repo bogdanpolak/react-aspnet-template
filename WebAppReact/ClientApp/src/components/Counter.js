@@ -2,8 +2,9 @@ import React from 'react';
 import { IncrementEditor } from "./IncrementEditor";
 import { useSelector } from 'react-redux'
 
-export function Counter() {
-  const [count, setCount] = React.useState(0);
+export function Counter( {initialValue} ) {
+  const counterStartValue = isNaN(initialValue) ? 0 : parseInt(initialValue);
+  const [count, setCount] = React.useState(counterStartValue);
   const increment = useSelector((state) => state.increment.value);
 
   return (
